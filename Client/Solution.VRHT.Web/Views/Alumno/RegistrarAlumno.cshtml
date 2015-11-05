@@ -1,0 +1,280 @@
+﻿@model Solution.VRHT.Web.Models.Admision.AlumnoModel
+@{
+    ViewBag.Title = "RegistrarAlumno";
+}
+
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/Jquery/jquery-1.10.2.min.js"></script>
+<link href="~/Content/StyleComponent.css" rel="stylesheet" />
+
+
+<!--Button Metro css-->
+<link href="~/Content/Metro.css" rel="stylesheet" />
+
+<!--pickers css-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-datepicker/css/datepicker-custom.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-timepicker/css/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+
+<!--gritter css-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/gritter/css/jquery.gritter.css" />
+
+<!--pickers css-->
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-datepicker/css/datepicker-custom.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-timepicker/css/timepicker.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+
+
+
+<style type="text/css" rel="stylesheet">
+    .dz-max-files-reached {
+        background-color: red;
+    }
+
+    #dropZone {
+        background: gray;
+        border: black dashed 3px;
+        width: 200px;
+        padding: 50px;
+        text-align: center;
+        color: white;
+    }
+</style>
+@section scripts{
+<script type="text/javascript" >
+
+
+
+    //File Upload response from the server
+    Dropzone.options.dropzoneForm = {
+        maxFiles: 2,
+        init: function () {
+            this.on("maxfilesexceeded", function (data) {
+                var res = eval('(' + data.xhr.responseText + ')');
+
+            });
+            this.on("addedfile", function (file) {
+
+                // Create the remove button
+                var removeButton = Dropzone.createElement("<button>Remove file</button>");
+
+
+                // Capture the Dropzone instance as closure.
+                var _this = this;
+
+                // Listen to the click event
+                removeButton.addEventListener("click", function (e) {
+                    // Make sure the button click doesn't submit the form:
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Remove the file preview.
+                    _this.removeFile(file);
+                    // If you want to the delete the file on the server as well,
+                    // you can do the AJAX request here.
+                });
+
+                // Add the button to the file preview element.
+                file.previewElement.appendChild(removeButton);
+            });
+        }
+    };
+
+
+
+
+
+
+</script>
+}
+
+
+
+
+<div class="modal-header">
+    <button aria-hidden="true" data-dissmiss="modal" class="close" type="button">x</button>
+    <h4 class="modal-title">Nuevo Alumno</h4>
+</div>
+
+@using (Html.BeginForm("CrearAlumno", "Alumno", FormMethod.Get, new { @id="frmCrearAlumno",role="form" }))
+{
+    <div class="modal-body">
+        <div class="row form-group">
+            <div class="col-sm-6">
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Codigo:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Nombres:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Apellidos:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Sexo:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                        @Html.DropDownListFor(x => x.SearchIdSexo, new SelectList(Model.ListaSexo, "IdSexo", "Descripcion"),"Sin Criterio", new { @id= "cboSexo" })
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Fecha de Nacimiento:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Nombre Apoderado:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Telefono:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Celular:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Correo Personal:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>DNI:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                            <input class="form-control" />
+
+                    </div>
+
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label>Foto:</label>
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="jumbotron">
+                            <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropZone" id="dropzoneForm">
+                                <div class="fallback">
+                                    <input name="file" type="file" multiple />
+                                    <input type="submit" value="Upload" />
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+}
+
+<!-- gritter --->
+<link href="~/Scripts/gritter/css/jquery.gritter.css" rel="stylesheet" />
+<script src="~/Scripts/gritter/js/jquery.gritter.js"></script>
+
+<!-- Select2 --->
+@*<script src="~/Scripts/select2-3.5.2/select2.js"></script>
+<script src="~/Scripts/select2-3.5.2/select2_locale_es.js"></script>*@
+<script src="~/Scripts/Utilidades.js"></script>
+
+
+
+<!--pickers plugins-->
+<script src="~/Scripts/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/bootstrap-datepicker/js/bootstrap-datepicker.es.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>

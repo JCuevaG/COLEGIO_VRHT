@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/Content/Metro.css" rel="stylesheet" />
+
+
+
+        <script src="~/Scripts/Jquery/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/Jquery/jquery-ui-1.10.3.min.js"></script>
+        <script src="~/Scripts/Jquery/jquery-migrate-1.2.1.min.js"></script>
+        <script src="~/Scripts/BootstrapJS/bootstrap.min.js"></script>
+        <script src="~/Scripts/Jquery/modernizr.min.js"></script>
+        @*<script src="~/Scripts/Jquery/jquery.nicescroll.js"></script>*@
+        @*<script src="~/Scripts/Jquery/scripts.js"></script>*@
+        <script src="~/Scripts/Jquery/jquery.pjax.js"></script>
+
+
+        <script src="~/Scripts/UserControl.Helper.js"></script>
+
+
+       
+        @Styles.Render("~/Content/css/StylePage")
+        @Styles.Render("~/Content/dropzonescss")
+        @Scripts.Render("~/bundles/modernizr")
+
+
+
+
+        <script>
+            $(function () {
+                $.ajaxSetup({ cache: false });
+            });
+        </script>
+
+    </head>
+    <body>
+  
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        @*<footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>*@
+
+        @*@Scripts.Render("~/bundles/jquery")*@
+        @*@Scripts.Render("~/bundles/jquery")*@
+        @*@Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/dropzonescripts")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<header>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="~/Content/css/index.css">
+    <link rel="stylesheet" href="~/Content/css/general.css">
+    <link rel="stylesheet" href="~/Content/css/login.css">
+
+</header>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<body>
+
+    <div id="contenedor">
+        <div id="contenedor-logo">
+            <img src="~/Content/images/login/LogoLibro1.png">
+        </div>
+
+        <div id="contenedor-nuevo">
+            <span> No tienes cuenta?</span>
+            <!-- agregar el html addusuario-->
+            <a href="addUser.html">Reg&iacute;strate aqu&iacute;</a>
+        </div>
+        <div id="contenedor-opciones">
+            <div>
+                <input type="email" placeholder="e-mail" class="entrada1" id="Id-Usuario" />
+                <input type="password" placeholder="Contrase&ntilde;a" class="entrada2" id="Id-Password" />
+            </div>
+            <button id="btn-Login"><img src="~/Content/images/login/go.png"></button>
+
+        </div>
+
+
+    </div>
+</body>
+
+<script>
+    var UrlAction = {        
+        urlHome :'@Url.Action("Index", "Home")'
+    }
+
+
+
+</script>
+
+<script src="~/ViewScripts/Login.js"></script>
+

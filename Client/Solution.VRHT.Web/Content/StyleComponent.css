@@ -1,0 +1,11 @@
+﻿
+
+.ValidateHidden {
+    visibility:hidden;
+    width:0px;
+    height:0px;
+    margin:0px;
+}
+.field-validation-error {
+    color:#ff6a00;
+}
